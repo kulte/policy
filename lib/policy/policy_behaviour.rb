@@ -27,7 +27,7 @@ module Policy
 
     def unauthorized(message)
       respond_to do |format|
-        format.html { redirect_to :back, error: message }
+        format.html { redirect_to :back, flash: { error: message } }
         format.json do
           render json: { status: :unauthorized, errors: [message] }
         end
