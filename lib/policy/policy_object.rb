@@ -33,13 +33,12 @@ module Policy
     end
 
     def method_missing(method, *)
-      puts "method missing on #{method}"
-
       if context.respond_to?(method)
         context.send(method)
       elsif context.respond_to?(:fetch)
         context.fetch(method) { super }
       else
+        puts "method missing on #{method}"
         super
       end
     end
